@@ -141,7 +141,7 @@ export function ProfileScreen({ onSettingsClick }: ProfileScreenProps) {
             <Logo size="md" showText />
           </div>
           <p className="text-center text-xs text-gray-400 mt-2">
-            Version 1.0.0 • Made with ❤️
+            Version 1.0.0
           </p>
         </motion.div>
       </div>
