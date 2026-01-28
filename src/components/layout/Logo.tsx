@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
@@ -10,29 +11,34 @@ interface LogoProps {
 }
 
 const sizes = {
-  sm: 32,
-  md: 48,
-  lg: 64,
-  xl: 96,
+  sm: 40,
+  md: 56,
+  lg: 80,
+  xl: 120,
 }
 
 export function Logo({ size = 'md', showText = false, className }: LogoProps) {
   const dimension = sizes[size]
+  const [imgSrc, setImgSrc] = useState('/icons/logo.png')
 
   return (
-    <div className={cn('flex items-center gap-2', className)}>
+    <div className={cn('flex flex-col items-center', className)}>
       <Image
-        src="/icons/logo.svg"
+        src={imgSrc}
         alt="LingoLearn"
         width={dimension}
         height={dimension}
-        className="rounded-xl"
+        className="object-contain"
         priority
+        onError={() => setImgSrc('/icons/logo.svg')}
       />
       {showText && (
-        <span className="font-bold text-xl text-gray-800">
-          Lingo<span className="text-green-500">Learn</span>
-        </span>
+        <div className="text-center mt-1">
+          <span className="font-bold text-xl bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">
+            Lingolearn
+          </span>
+          <p className="text-xs text-gray-500">Serious Fun</p>
+        </div>
       )}
     </div>
   )
