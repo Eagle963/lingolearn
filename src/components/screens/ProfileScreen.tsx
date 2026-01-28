@@ -1,12 +1,16 @@
 'use client'
 
-import { Zap, Flame, Trophy, Gift, Lock } from 'lucide-react'
+import { Zap, Flame, Trophy, Gift, Lock, Settings } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useGameStore } from '@/stores/useGameStore'
 import { Logo } from '@/components/layout/Logo'
 import { levelProgress } from '@/lib/utils'
 
-export function ProfileScreen() {
+interface ProfileScreenProps {
+  onSettingsClick?: () => void
+}
+
+export function ProfileScreen({ onSettingsClick }: ProfileScreenProps) {
   const { xp, level, streak, gems, completedLessons } = useGameStore()
   const progress = levelProgress(xp)
 
@@ -23,14 +27,24 @@ export function ProfileScreen() {
     <div className="min-h-screen bg-gray-50 pb-24">
       {/* Header */}
       <div className="bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-8">
-        <div className="flex items-center gap-4">
-          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
-            <span className="text-4xl">🧑‍💻</span>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+              <span className="text-4xl">🧑‍💻</span>
+            </div>
+            <div className="text-white">
+              <h1 className="text-2xl font-bold">Apprenant</h1>
+              <p className="text-green-100">Niveau {level} • {xp} XP total</p>
+            </div>
           </div>
-          <div className="text-white">
-            <h1 className="text-2xl font-bold">Apprenant</h1>
-            <p className="text-green-100">Niveau {level} • {xp} XP total</p>
-          </div>
+          {onSettingsClick && (
+            <button
+              onClick={onSettingsClick}
+              className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 transition"
+            >
+              <Settings className="w-6 h-6" />
+            </button>
+          )}
         </div>
       </div>
 

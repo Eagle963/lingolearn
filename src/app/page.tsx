@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { HomeScreen, LessonScreen, ResultScreen, ProfileScreen, ProgressScreen } from '@/components/screens'
+import { HomeScreen, LessonScreen, ResultScreen, ProfileScreen, ProgressScreen, SettingsScreen } from '@/components/screens'
 import { BottomNav } from '@/components/layout'
 
-type Screen = 'home' | 'lesson' | 'result' | 'profile' | 'progress'
+type Screen = 'home' | 'lesson' | 'result' | 'profile' | 'progress' | 'settings'
 
 interface LessonResult {
   lessonId: number
@@ -71,11 +71,15 @@ export default function LingoLearnApp() {
       )}
 
       {screen === 'profile' && (
-        <ProfileScreen />
+        <ProfileScreen onSettingsClick={() => setScreen('settings')} />
       )}
 
       {screen === 'progress' && (
         <ProgressScreen />
+      )}
+
+      {screen === 'settings' && (
+        <SettingsScreen onBack={() => setScreen('profile')} />
       )}
 
       {/* Bottom Navigation - visible on home, progress and profile */}
