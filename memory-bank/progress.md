@@ -335,13 +335,25 @@
 
 ## Notes de Développement
 
-### Session 1
-- **Date:** 
-- **Temps passé:** 
-- **Étapes complétées:** 
-- **Problèmes rencontrés:** 
-- **Solutions:** 
+### Session 1 - Progress Display Feature
+- **Date:** 2026-01-28
+- **Étapes complétées:**
+  - Ajout de l'écran de progression (`ProgressScreen`)
+  - Ajout de l'onglet "Progression" dans la barre de navigation
+  - Implémentation des composants de visualisation:
+    - Progression globale avec cercle animé SVG
+    - Statistiques de leçons, XP et niveau
+    - Activité hebdomadaire (graphique en barres)
+    - Progression par catégorie avec barres de progression
+    - Section accomplissements (streak, paliers XP, catégories 100%)
+    - Prochain objectif avec indicateur de progression
+- **Fichiers modifiés:**
+  - `src/app/page.tsx` - Ajout de ProgressScreen et mise à jour de la navigation
+- **Notes:**
+  - Le type de screen a été étendu pour inclure 'progress'
+  - La NavBar inclut maintenant 3 onglets: Accueil, Progression, Profil
+  - Build vérifié avec succès
 
 ---
 
-*Dernière mise à jour: À remplir*
+*Dernière mise à jour: 2026-01-28*
