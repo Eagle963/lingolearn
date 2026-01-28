@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { HomeScreen, LessonScreen, ResultScreen, ProfileScreen, ProgressScreen, SettingsScreen } from '@/components/screens'
+import { HomeScreen, LessonScreen, ResultScreen, ProfileScreen, ProgressScreen, SettingsScreen, PhoneticsScreen } from '@/components/screens'
 import { BottomNav } from '@/components/layout'
 
-type Screen = 'home' | 'lesson' | 'result' | 'profile' | 'progress' | 'settings'
+type Screen = 'home' | 'lesson' | 'result' | 'profile' | 'progress' | 'settings' | 'phonetics'
 
 interface LessonResult {
   lessonId: number
@@ -41,7 +41,7 @@ export default function LingoLearnApp() {
     setScreen('home')
   }
 
-  const handleTabChange = (tab: 'home' | 'progress' | 'profile') => {
+  const handleTabChange = (tab: 'home' | 'phonetics' | 'progress' | 'profile') => {
     setScreen(tab)
   }
 
@@ -82,10 +82,19 @@ export default function LingoLearnApp() {
         <SettingsScreen onBack={() => setScreen('profile')} />
       )}
 
-      {/* Bottom Navigation - visible on home, progress and profile */}
-      {(screen === 'home' || screen === 'profile' || screen === 'progress') && (
+      {screen === 'phonetics' && (
+        <PhoneticsScreen
+          onBack={() => setScreen('home')}
+          onStart={() => {
+            // TODO: Start phonetics practice
+          }}
+        />
+      )}
+
+      {/* Bottom Navigation */}
+      {(screen === 'home' || screen === 'profile' || screen === 'progress' || screen === 'phonetics') && (
         <BottomNav
-          activeTab={screen as 'home' | 'progress' | 'profile'}
+          activeTab={screen as 'home' | 'phonetics' | 'progress' | 'profile'}
           onTabChange={handleTabChange}
         />
       )}
