@@ -13,13 +13,24 @@ interface PhoneticsScreenProps {
 function SoundCard({ sound }: { sound: PhoneticSound }) {
   const { voiceGender, voiceAccent, voiceSpeed, ttsEnabled } = useSettingsStore()
 
-  const playSound = () => {
+  const playSound = async () => {
     if (!ttsEnabled) return
-    speakText(sound.example, {
+
+    // Prononcer le son phonétique d'abord
+    await speakText(sound.pronunciation, {
       gender: voiceGender,
       accent: voiceAccent,
-      speed: voiceSpeed,
+      speed: 0.7,
     })
+
+    // Petite pause puis le mot complet
+    setTimeout(() => {
+      speakText(sound.example, {
+        gender: voiceGender,
+        accent: voiceAccent,
+        speed: voiceSpeed,
+      })
+    }, 400)
   }
 
   return (
