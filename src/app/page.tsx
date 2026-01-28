@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { HomeScreen, LessonScreen, ResultScreen, ProfileScreen } from '@/components/screens'
+import { HomeScreen, LessonScreen, ResultScreen, ProfileScreen, ProgressScreen } from '@/components/screens'
 import { BottomNav } from '@/components/layout'
 
-type Screen = 'home' | 'lesson' | 'result' | 'profile'
+type Screen = 'home' | 'lesson' | 'result' | 'profile' | 'progress'
 
 interface LessonResult {
   lessonId: number
@@ -41,7 +41,7 @@ export default function LingoLearnApp() {
     setScreen('home')
   }
 
-  const handleTabChange = (tab: 'home' | 'profile') => {
+  const handleTabChange = (tab: 'home' | 'progress' | 'profile') => {
     setScreen(tab)
   }
 
@@ -74,10 +74,14 @@ export default function LingoLearnApp() {
         <ProfileScreen />
       )}
 
-      {/* Bottom Navigation - visible on home and profile */}
-      {(screen === 'home' || screen === 'profile') && (
+      {screen === 'progress' && (
+        <ProgressScreen />
+      )}
+
+      {/* Bottom Navigation - visible on home, progress and profile */}
+      {(screen === 'home' || screen === 'profile' || screen === 'progress') && (
         <BottomNav
-          activeTab={screen as 'home' | 'profile'}
+          activeTab={screen as 'home' | 'progress' | 'profile'}
           onTabChange={handleTabChange}
         />
       )}
